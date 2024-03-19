@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using EntityFrameworkCore;
-using EventClass.cs;
+﻿using Microsoft.EntityFrameworkCore;
+using Day_Planner.Models;
 
 namespace Day_Planner.Data
 {
     //Entities
-    public class EventContext : DbContext
+    public class DataContext : DbContext
     {
-        public DbSet<Event> Event { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+          public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
-            optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=DayPlannerdb;Trusted_Connection=True");
+        
         }
+
+        public DbSet<Event> Events { get; set; }
     }
 }
